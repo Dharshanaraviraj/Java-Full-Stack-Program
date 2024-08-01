@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Factorial</title>
+        <script>
+            function Factorial()
+            {
+                let fact=1;
+                let n=parseInt(document.getElementById("n").value);
+                for(let i=1;i<=n;i++){
+                    fact=fact * 1;
+                }
+                document.getElementById("ResultDiv").innerHTML="<b>Factorial : " +fact;
+            }
+        </script>
+    </head>
+    <body>
+        Enter The Number : <input type="text" id="n" value="Enter positive Number"
+        onfocus="this.value=''" onblur="Factorial()"/>
+        <br>
+
+        <br><br>
+        <div id="ResultDiv">
+        </div>
+    </body>
+</html>

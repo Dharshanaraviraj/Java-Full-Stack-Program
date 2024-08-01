@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Pattern Program</title>
+        <script>
+            function pattern()
+            {
+                var n = parseInt(document.getElementById("n").value);
+                var result = " ";
+                for(var i=0;i<=n;i++) 
+                {
+                for(var j=0;j<=i;j++) 
+                {
+                    result+= "* " ;
+                }
+                result+= "<br>";
+            }
+            document.getElementById("ResultDiv").innerHTML="<font color='blue'><b>"+result+"</b></font>";
+        }
+        </script>
+    </head>
+    <body>
+        Enter Number of Rows : <input type="text" id="n"/>
+       <br>
+       <button onclick="pattern()">pattern</button><br><br>
+       <div id="ResultDiv"></div>
+    </body>
+</html>

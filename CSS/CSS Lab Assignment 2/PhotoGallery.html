@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+<style>
+    body{
+            overflow-y: hidden;
+        }
+    .Main{
+        border: 2px solid black;
+        height: 680px;
+        width: 100%;
+        background-color:silver;
+    }
+    .heading{
+        border: 3px solid orange;
+        width: 95%;
+        margin-left: 27px;
+        height: 40px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 5px;
+        border-bottom: 0px;
+        font-size: larger;
+        background-color: black;
+        color: white;
+
+    }
+    .container{
+        border: 2px solid black;
+        border-top: 5px solid black;
+        width:90%;
+        margin-left: 70px;
+        height:550px;
+    }
+    .table{
+        border: 8px solid silver;
+        width: 300px;
+        height: 230px;
+        margin-left: 50px;
+        margin-top: 30px;
+        border-radius: 10px;
+        padding:0px;
+    }
+    img{
+        border: 2px solid black;
+        width: 300px;
+        height: 230px;
+        border-radius:10px ;
+    }
+    .box{
+        margin-left: 30px;
+        margin-top: 15px;    
+        }
+    .table:hover{
+        transform: scale(1.07);
+    }
+</style>
+</head>
+<body>
+    <div class="Main"><br>
+    <div class="heading">Photo Gallery</div><br>
+    <div class="container">
+    <div class="box">
+        <table>
+        <tr>
+            <td class="table"><img src="img1.jpg"></td>
+            <td class="table"><img src="img2.jpg"></td>
+            <td class="table"><img src="img3.jpg"></td>
+            <td class="table"><img src="img4.jpg"></td>
+        </tr>
+        <tr>
+            <td class="table"><img src="img5.jpg"></td>
+            <td class="table"><img src="img6.jpg"></td>
+            <td class="table"><img src="img7.jpg"></td>
+            <td class="table"><img src="img8.jpg"></td>
+        </tr>
+    </div>
+</div>
+</div>
+</body>
+</html>

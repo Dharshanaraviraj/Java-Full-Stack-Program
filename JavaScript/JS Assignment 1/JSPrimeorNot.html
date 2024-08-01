@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>PrimeNumber or not</title>
+        <script>
+            function PrimeNumber()
+            {
+                var prime=true;
+                var a=parseInt(document.getElementById("a").value);
+                for(var i=2;i<=a/2;i++)
+                {
+                    if(a%i==0){
+                    Prime=false;
+                }
+            }
+                if(prime)
+            {
+                document.getElementById("ResultDiv").innerHTML="<b>It is a PrimeNumber</b>";
+            }
+            else
+            {
+                document.getElementById("ResultDiv").innerHTML="<b>It is not a PrimeNumber</b>";
+            }
+        }
+        </script>
+    </head>
+    <body>
+        Enter the Number :<input type="number" id="a"/>
+       <br>
+       <button onclick="PrimeNumber()">Check</button><br>
+       <div id="ResultDiv"></div>
+    </body>
+</html>

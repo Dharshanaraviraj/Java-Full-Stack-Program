@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>calculator</title>
+        <style>
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .Main{
+                border:10px solid gray;
+                height:450px;
+                width: 296px;
+                background-color:gray;
+                box-shadow: 50px;
+                border-radius: 3px;
+            }
+            .container{
+                border: 5px solid white;
+                width: 280;
+                height: 40px;
+                margin-left: 3px;;
+                margin-top: 10px;
+                font-size:xx-large;
+                background-color: white;
+                box-shadow:10px;
+                border-radius: 3px;
+            }
+            button{
+                height: 70px;
+                width: 70px;
+                font-size: x-large;
+                background-color: teal;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="Main">
+        <div class="one">
+            <div class="container" id="calculator">0</div>
+            <br>
+            <table>
+                    <tr>
+                        <td><button onclick="Clear()">C</button></td>
+                        <td><button onclick="display('%')">%</button></td>
+                        <td><button onclick="backspace()">&larr;</button></td>
+                        <td><button onclick="display('/')">/</button></td>  
+                    </tr>
+                    <tr>
+                        <td><button onclick="display('7')">7</button></td>
+                        <td><button onclick="display('8')">8</button></td>
+                        <td><button onclick="display('9')">9</button></td>
+                        <td><button onclick="display('*')">*</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="display('4')">4</button></td>
+                        <td><button onclick="display('5')">5</button></td>
+                        <td><button onclick="display('6')">6</button></td>
+                        <td><button onclick="display('-')">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="display('1')">1</button></td>
+                        <td><button onclick="display('2')">2</button></td>
+                        <td><button onclick="display('3')">3</button></td>
+                        <td><button onclick="display('+')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="display('00')">00</button></td>
+                        <td><button onclick="display('0')">0</button></td>
+                        <td><button onclick="display('.')">.</button></td>
+                        <td><button onclick="Result('')">=</button></td>
+                    </tr></div>
+                </table>  
+            </div>
+        </div>
+        <script>
+            let displayElement = document.getElementById('calculator');
+            let input = '';
+
+            function Clear() {
+            input = '';
+            displayElement.textContent = '0';
+        }
+
+        function display(value) {
+            if (input == '0' && value !== '.') {
+                input = value;
+            } else {
+                input += value;
+            }
+            displayElement.textContent = input;
+        }
+
+        function backspace() {
+            input = input.slice(0, -1);
+            displayElement.textContent = input || '0';
+        }
+
+        function Result() {
+            try {
+                input = eval(input).toString();
+                displayElement.textContent = input;
+            } catch (error) {
+                displayElement.textContent = 'Error';
+                input = '';
+            }
+        }
+        </script>
+    </body>
+</html>

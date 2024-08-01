@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Events Demo</title>
+</head>
+<body>
+
+<h1>JavaScript Events</h1>
+
+<!-- Click Event -->
+<button id="clickButton">Click Me!</button>
+<p id="clickOutput"></p>
+
+<!-- Mouseover Event -->
+<div id="mouseOverDiv" style="width:200px;height:100px;background-color:lightblue;margin-top:20px;">
+  Hover over me!
+</div>
+<p id="mouseOverOutput"></p>
+
+<!-- Keydown Event -->
+<input type="text" id="textInput" placeholder="Type something...">
+<p id="keyOutput"></p>
+
+<!-- Focus and Blur Events -->
+<input type="text" id="focusBlurInput" placeholder="Focus and Blur Events">
+<p id="focusOutput"></p>
+<p id="blurOutput"></p>
+
+<!-- Change Event -->
+<select id="selectInput">
+  <option value="Option 1">Option 1</option>
+  <option value="Option 2">Option 2</option>
+  <option value="Option 3">Option 3</option>
+</select>
+<p id="changeOutput"></p>
+
+<script>
+// Click Event
+document.getElementById("clickButton").addEventListener("click", function() {
+  document.getElementById("clickOutput").innerText = "Button clicked!";
+});
+
+// Mouseover Event
+document.getElementById("mouseOverDiv").addEventListener("mouseover", function() {
+  document.getElementById("mouseOverOutput").innerText = "Mouse is over the div!";
+});
+document.getElementById("mouseOverDiv").addEventListener("mouseout", function() {
+  document.getElementById("mouseOverOutput").innerText = "";
+});
+
+// Keydown Event
+document.getElementById("textInput").addEventListener("keydown", function(event) {
+  document.getElementById("keyOutput").innerText = "Key pressed: " + event.key;
+});
+
+// Focus and Blur Events
+document.getElementById("focusBlurInput").addEventListener("focus", function() {
+  document.getElementById("focusOutput").innerText = "Input focused!";
+});
+document.getElementById("focusBlurInput").addEventListener("blur", function() {
+  document.getElementById("blurOutput").innerText = "Input lost focus!";
+});
+
+// Change Event
+document.getElementById("selectInput").addEventListener("change", function() {
+  document.getElementById("changeOutput").innerText = "Selected: " + this.value;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<h1>Interpolation Example</h1>
+<b>
+  My Name : {{name}}
+  <br><br>
+  My Age : {{age}}
+  <br><br>
+  Email : <input type="text" value="{{email}}">
+  <br><br>
+  Addition : {{getAddition(10,20)}}
+</b>
+<h1>Property Binding Example</h1>
+<font [color]="txtColor">
+  My Name : <input type="text" [value] = "name">
+  <br><br>
+  My Age :  <input type="text" [value] = "age">
+  <br><br>
+  Email :  <input type="text" [value] = "email">
+  <br><br>
+  Addition :  <input type="text" [value] = "getAddition(10,20)">
+  <br><br>
+  <img [src] = "image" width="200" height="150">
+</font>
+<h1>Event Binding Example</h1>
+<br><br>
+<button (click) = "changeName()">Change Name</button>
+<br><br>
+<button (click) = "changeAge()">Change Age</button>
+<br><br>
+<button (click) = "changeEmail()">Change Email</button>
+<br><br>
+<button (click) = "changeImage()">Change Image</button>
+<br><br>
+<h1>Two Way Binding Example</h1>
+Enter your First Name <input type="text" [(ngModel)]="fname"/>
+<br><br>
+<b>Welcome {{fname}}</b>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Palindrome Program</title>
+        <script>
+            function palindrome()
+            {
+               var a=document.getElementById("n").value;
+               var b=a.split('').reverse( ).join('');
+                if(b==a){
+                document.getElementById("ResultDiv").innerHTML="<b>It is a Palindrome</b>";
+            }
+            else{
+                document.getElementById("ResultDiv").innerHTML="<b>It is not a Palindrome</b>";
+            }
+        }
+        </script>
+    </head>
+    <body>
+        Enter the String :<input type="text" id="n"/>
+       <br>
+       <button onclick="palindrome()">Check</button><br><br>
+       <div id="ResultDiv"></div>
+    </body>
+</html>
