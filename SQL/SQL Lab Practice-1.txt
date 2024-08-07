@@ -1,0 +1,190 @@
+                                                                                  ASSIGNMENT 1
+
+TABLE1&TABLE2:
+
+CREATE:
+========
+
+SQL> CREATE TABLE client_master (Client_No CHAR(6) PRIMARY KEY, Name VARCHAR(50),City VARCHAR(50), Pincode CHAR(6),Bal_due DECIMAL(10, 2));
+
+Table created.
+
+SQL> CREATE TABLE sale_order (Order_No CHAR(6) PRIMARY KEY,Order_Date DATE,Client_No CHAR(6),Salesman_No CHAR(6),Dely_Date DATE,Order_Status VARCHAR(20));
+
+Table created.
+
+
+INSERT:
+========
+
+1 row created.
+
+SQL>  INSERT INTO client_master values('C00002', 'VANDANA RAO', 'Chennai', '780001', 0);
+
+1 row created.
+
+SQL> INSERT INTO client_master values('C00003', 'PREM PUJARI', 'Mumbai', '400057', 5000);
+
+1 row created.
+
+SQL>  INSERT INTO client_master values('C00004', 'BASU NATH', 'Mumbai', '400056', 0);
+
+1 row created.
+
+SQL> INSERT INTO client_master values('C00005', 'RAVI SHANKAR', 'Delhi', '100001', 2000);
+
+1 row created.
+
+SQL>  INSERT INTO client_master values('C00006', 'ROOPA', 'Mumbai', '400050', 0);
+
+1 row created.
+
+
+
+SQL>  INSERT INTO sale_order VALUES('O19001', TO_DATE('2013-01-12', 'YYYY-MM-DD'), 'C00001', 'S00001', TO_DATE('2013-01-20', 'YYYY-MM-DD'), 'In process');
+
+1 row created.
+
+SQL> INSERT INTO sale_order VALUES('O19002', TO_DATE('2013-01-25', 'YYYY-MM-DD'), 'C00002', 'S00002', TO_DATE('2013-01-27', 'YYYY-MM-DD'), 'Cancelled');
+
+1 row created.
+
+SQL>  INSERT INTO sale_order VALUES('O46865', TO_DATE('2013-02-18', 'YYYY-MM-DD'), 'C00003', 'S00003', TO_DATE('2013-02-20', 'YYYY-MM-DD'), 'Fulfilled');
+
+1 row created.
+
+SQL> INSERT INTO sale_order VALUES('O19003', TO_DATE('2013-04-03', 'YYYY-MM-DD'), 'C00001', 'S00001', TO_DATE('2013-04-07', 'YYYY-MM-DD'), 'Fulfilled');
+
+1 row created.
+
+SQL> INSERT INTO sale_order VALUES('O46866', TO_DATE('2013-05-20', 'YYYY-MM-DD'), 'C00004', 'S00002', TO_DATE('2013-04-07', 'YYYY-MM-DD'), 'Cancelled');
+
+1 row created.
+
+SQL>  INSERT INTO sale_order VALUES('O19008', TO_DATE('2013-05-24', 'YYYY-MM-DD'), 'C00005', 'S00004', TO_DATE('2013-05-26', 'YYYY-MM-DD'), 'In process');
+
+1 row created.
+
+============================================================================================================================================================================================
+
+SQL> SELECT * FROM client_master;
+
+CLIENT_NO  NAME                 CITY            PINCOD BAL_DUE
+---------- -------------------- --------------- ------ -------
+C00001     SMITHA JAIN          Mumbai          400054   15000
+C00002     VANDANA RAO          Chennai         780001       0
+C00003     PREM PUJARI          Mumbai          400057    5000
+C00004     BASU NATH            Mumbai          400056       0
+C00005     RAVI SHANKAR         Delhi           100001    2000
+C00006     ROOPA                Mumbai          400050       0
+
+6 rows selected.
+
+SQL> SELECT * FROM sale_order;
+
+ORDER_ ORDER_DAT CLIENT_NO  SALESM DELY_DATE ORDER_STATUS
+------ --------- ---------- ------ --------- --------------------
+O19001 12-JAN-13 C00001     S00001 20-JAN-13 In process
+O19002 25-JAN-13 C00002     S00002 27-JAN-13 Cancelled
+O46865 18-FEB-13 C00003     S00003 20-FEB-13 Fulfilled
+O19003 03-APR-13 C00001     S00001 07-APR-13 Fulfilled
+O46866 20-MAY-13 C00004     S00002 07-APR-13 Cancelled
+O19008 24-MAY-13 C00005     S00004 26-MAY-13 In process
+
+6 rows selected.
+
+============================================================================================================================================================================================
+
+
+1.) List all details from the client_master table for clients whose Bal_due = 0.
+
+SQL> SELECT * FROM client_master WHERE Bal_due = 0;
+
+CLIENT_NO  NAME                 CITY            PINCOD BAL_DUE
+---------- -------------------- --------------- ------ -------
+C00002     VANDANA RAO          Chennai         780001       0
+C00004     BASU NATH            Mumbai          400056       0
+C00006     ROOPA                Mumbai          400050       0
+
+============================================================================================================================================================================================
+
+
+2. Update table client_master, Change city of Client_no C00004 to Jaipur.
+
+
+SQL> UPDATE client_master SET City = 'Jaipur' WHERE Client_No = 'C00004';
+
+1 row updated.
+
+SQL> SELECT * FROM  client_master;
+
+CLIENT_NO  NAME                 CITY            PINCOD BAL_DUE
+---------- -------------------- --------------- ------ -------
+C00001     SMITHA JAIN          Mumbai          400054   15000
+C00002     VANDANA RAO          Chennai         780001       0
+C00003     PREM PUJARI          Mumbai          400057    5000
+C00004     BASU NATH            Jaipur          400056       0
+C00005     RAVI SHANKAR         Delhi           100001    2000
+C00006     ROOPA                Mumbai          400050       0
+
+6 rows selected.
+
+============================================================================================================================================================================================
+
+
+3. Retrieve records of clients residing in Mumbai.
+
+
+SQL> SELECT * FROM client_master WHERE City = 'Mumbai';
+
+CLIENT_NO  NAME                 CITY            PINCOD BAL_DUE
+---------- -------------------- --------------- ------ -------
+C00001     SMITHA JAIN          Mumbai          400054   15000
+C00003     PREM PUJARI          Mumbai          400057    5000
+C00006     ROOPA                Mumbai          400050       0
+
+============================================================================================================================================================================================
+
+4. Find the name and address of customer who has placed Order_no &#39;O19003&#39; and &#39;O19002&#39; respectively.
+
+
+SQL> SELECT cm.Name, cm.City, cm.Pincode FROM client_master cm JOIN sale_order so ON cm.Client_No = so.Client_No WHERE so.Order_No IN ('O19003', 'O19002');
+
+NAME                 CITY            PINCOD
+-------------------- --------------- ------
+SMITHA JAIN          Mumbai          400054
+VANDANA RAO          Chennai         780001
+
+============================================================================================================================================================================================
+
+
+5. Construct English like sentence from the table client_master ({Customer name} live in the city of {city}).
+
+
+SQL> SELECT Name || ' lives in the city of ' || City || '.' AS Sentence FROM client_master;
+
+SENTENCE
+--------------------------------------------------------------------------------
+SMITHA JAIN lives in the city of Mumbai.
+VANDANA RAO lives in the city of Chennai.
+PREM PUJARI lives in the city of Mumbai.
+BASU NATH lives in the city of Jaipur.
+RAVI SHANKAR lives in the city of Delhi.
+ROOPA lives in the city of Mumbai.
+
+6 rows selected.
+
+============================================================================================================================================================================================
+
+
+6. List the client_no, name, city and pincode of clients whose Order_status is &quot;In process&quot;.
+
+
+SQL> SELECT cm.Client_No, cm.Name, cm.City, cm.Pincode FROM client_master cm JOIN sale_order so ON cm.Client_No = so.Client_No WHERE so.Order_Status = 'In process';
+
+CLIENT_NO  NAME                 CITY            PINCOD
+---------- -------------------- --------------- ------
+C00001     SMITHA JAIN          Mumbai          400054
+C00005     RAVI SHANKAR         Delhi           100001
+
+============================================================================================================================================================================================
