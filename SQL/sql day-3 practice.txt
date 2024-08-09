@@ -1,0 +1,202 @@
+Group By Clause
+````````````````  
+
+EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Dhanu                      2000
+       102 Madhan                     3000
+       103 Madhu                      4000
+       104 Dhachu                     5000
+       105 Raj                        3000
+       106 Ravi                       3000
+
+1)alter table table_employee add dno number(30);
+
+Table altered.
+
+SQL>select * from table_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      2000
+       102 Madhan                     3000
+       103 Madhu                      4000
+       104 Dhachu                     5000
+       105 Raj                        3000
+       106 Ravi                       3000
+
+2)update table_employee set dno=10 where eid in(101,102);
+2 rows updated.
+
+update table_employee set dno=20 where eid in(103,104);
+
+2 rows updated.
+update table_employee set dno=30 where eid in(105,106);
+
+2 rows updated.
+SQL>  select * from table_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      2000         10
+       102 Madhan                     3000         10
+       103 Madhu                      4000         20
+       104 Dhachu                     5000         20
+       105 Raj                        3000         30
+       106 Ravi                       3000         30
+
+3)select dno, count(*) from table_employee group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        30          2
+        20          2
+        10          2
+
+4) select dno, count(*), sum(esalary),avg(esalary),min(esalary),max(esalary) from table_employee group by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        30          2         6000         3000         3000         3000
+        20          2         9000         4500         4000         5000
+        10          2         5000         2500         2000         3000
+
+
+5) select dno, count(*), sum(esalary),avg(esalary),min(esalary),max(esalary) from table_employee group by dno order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        10          2         5000         2500         2000         3000
+        20          2         9000         4500         4000         5000
+        30          2         6000         3000         3000         3000
+
+6) select dno, count(*), sum(esalary),avg(esalary),min(esalary),max(esalary) from table_employee group by dno having min(esalary) > 2000 order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        20          2         9000         4500         4000         5000
+        30          2         6000         3000         3000         3000
+
+===========================================================================================================================================================================================
+
+Group Functions in SQL
+````````````````````````
+
+1) create table tb_student(reg_no number(5) primary key,
+  2  student_name varchar2(20) not null,
+  3  student_age number(3) check(student_age>0),
+  4  student_email varchar(20) unique,
+  5  student_location varchar2(20) default 'Erode');
+
+
+2) insert into tb_student (reg_n0, student_name,student_age, student_email) values (101,'Dhachu','20','dharsh@gmail.com');
+1 row created.
+
+SQL> select * from tb_student;
+
+    REG_N0 STUDENT_NAME         STUDENT_AGE STUDENT_EMAIL
+---------- -------------------- ----------- --------------------
+STUDENT_LOCATION
+--------------------
+       101 Dhachu                        20 dharsh@gmail.com
+Erode
+
+============================================================================================================================================================================================
+Constraints in SQL
+```````````````````
+
+1)create table department(dno number(5) primary key,dname varchar2(20));
+Table created.
+
+2) create table employee(eid number(5) primary key,ename varchar2(20),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+Table created.
+
+insert into department values(10,'Dhachu');
+1 row created.
+
+insert into employee values(101,'Dharsh',2000,10);
+1 row created.
+
+ select * from employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dharsh                     2000         10
+
+select * from department;
+
+       DNO DNAME
+---------- --------------------
+        10 Dhachu
+========================================================================================================================================================================================
+VIEWS
+``````
+ select * from table_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      2000         10
+       102 Madhan                     3000         10
+       103 Madhu                      4000         20
+       104 Dhachu                     5000         20
+
+1) create view myview as select * from table_employee where dno = 10;
+View created.
+
+2)select * from myview;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      2000         10
+       102 Madhan                     3000         10
+
+3) update myview set esalary=7000 where eid=101;
+1 row updated.
+
+select * from myview;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      7000         10
+       102 Madhan                     3000         10
+
+select * from table_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Dhanu                      7000         10
+       102 Madhan                     3000         10
+       103 Madhu                      4000         20
+       104 Dhachu                     5000         20
+       105 Raj                        3000         30
+       106 Ravi                       3000         30
+
+4)drop view myview;
+View dropped.
+
+
+==========================================================================================================================================================================================
+
+ALLIAS
+``````
+
+1)select eid as "Employee Id", ename "Employee Name" from table_employee;
+
+Employee Id Employee Name
+----------- --------------------
+        101 Dhanu
+        102 Madhan
+        103 Madhu
+        104 Dhachu
+        105 Raj
+        106 Ravi
+
+6 rows selected.
+
+2) select dno,count(*) as "Total No of Employees" from table_employee group by dno;
+
+       DNO Total No of Employees
+---------- ---------------------
+        30                     2
+        20                     2
+        10                     2
